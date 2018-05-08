@@ -1,0 +1,31 @@
+@import "./mobile.scss";
+@import "./mint-style.css";
+@import "./commom/swiper-3.3.1.min.css";
+@import "../assets/iconfont/iconfont.css";
+
+    #footlead{
+        width: 100%;
+        position: fixed;
+        height: 103px;
+        border-top: 1px solid #999;
+        font-size: 26px;
+        bottom: 0;
+        background: rgb(246,246,246);
+        .leader{
+            color:rgb(132,138,142);
+            width: 20%;
+            display: block;
+            float: left;
+            text-align: center;
+        }
+        
+    }
+    #footlead .router-link-active{
+        
+            i {color:#333}
+            p{color:deeppink}
+   
+}
+    
+    
+

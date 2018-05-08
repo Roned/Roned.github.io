@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="/javascripts/xheditor/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/xheditor/xheditor-1.2.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/xheditor/xheditor_lang/zh-cn.js"></script>
+
+
+    <form action="">
+        <input type="text">
+        <textarea name="" id="" cols="120" rows="10" id="mycontent">
+           
+        </textarea>
+        <input type="file">
+        <button type="submit">按钮</button>
+    </form>
+</body>
+<script type="text/javascript">
+    // $("#content").xheditor();  实例化
+
+    $(pageInit);
+
+    //  comment.ejs  /comment/index
+    function pageInit(){
+        $.extend(XHEDITOR.settings,{shortcuts:{"ctrl+enter":submitForm}});
+        // $("#ele").xheditor();
+        $("#mycontent").xheditor({   //初始化 富文件编辑框
+            html5Upload:false,
+            upMultiple:"1",
+
+            upLinkRrl:"upload.html",
+            upLinkExt:"zip,rar,txt",
+
+            upImgUrl:"/comments/uploadImg",
+            upImgExt:"jpg,jpeg,gif,png",
+
+            upFlashUrl:"upload.php",
+            upFlashExt:"swf",
+
+            upMediaUrl:"upload.php",
+            upMediaExt:"wmv,avi,wma,mp3,mid"
+
+        });
+    };
+
+    function insertUpload(arrMsg){
+        console.log(arrMsg);
+        var i,msg;
+        for(var i=0;i<arrMsg.length;i++){
+            msg=arrMsg[i];
+            console.log(msg);
+            $("#uploadList").append('<option value="'+msg.id+'">'+msg.localname+'</option>')
+        }
+    };
+
+    function submitForm(){
+        $("#frmDemo").submit();
+    }
+</script>
+</html>
+<% result1.forEach((item,index)=>{ %>
+    <div class="panel panel-default col-md-12 panel-primary">
+            <div class="panel-body">
+                    <div class="personimg">
+                            <img class="img-circle" src="/images/images/y.jpg" alt="">
+                     </div> 
+                     <div class="content clearbox">
+                        <dl>
+                                <dd class="blodname">
+                                        <%-item.name%>
+                                </dd>
+                                <dd>
+                                        <%-item.date%>
+                                </dd>
+                                <dd class="forimg">
+                                        <%-item.content%>
+                                </dd>
+                        </dl>
+                     </div>  
+
+              </div>
+    </div>
+<% })%>
+
+
+
+<% result1.forEach((item,index)=>{ %>
+    <div class="panel panel-default col-md-12 panel-primary">
+            <div class="panel-body">
+                    <div class="personimg">
+                            <img class="img-circle" src="/images/images/y.jpg" alt="">
+                     </div> 
+                     <div class="content clearbox">
+                        <dl>
+                                <dd class="blodname">
+                                        <%-item.name%>
+                                </dd>
+                                <dd>
+                                        <%-item.date%>
+                                </dd>
+                                <dd class="forimg">
+                                        <%-item.content%>
+                                </dd>
+                        </dl>
+                        <div class="replybox">
+                            <hr>
+                            <div class="replylist">
+                                <ol class="reply">
+                                    <li></li>
+                                    <li></li>
+                            </ol>
+                            </div>
+                        
+                       
+                        
+
+                        <form class="form-inline">
+                       
+                            <div class="form-group">
+                              <label for="exampleInputEmail2"></label>
+                              <input type="text" class="form-control" id="exampleInputEmail2" placeholder="评论">
+                            </div>
+                            <button type="submit" class="btn btn-default">发布</button>
+                          </form>
+                        </div>
+                        
+                     </div>  
+                     
+
+              </div>
+              
+    </div>
+<% })%>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="/bootstrap/js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<style>
+        *{
+          
+            list-style: none;
+        }
+        .demoimg{
+            width: 210px;
+            height: 210px;
+        }
+        .paddingtop{
+            height: 30px;
+        }
+        .megbox tr{
+          
+            height: 41px;
+        }
+        .megbox{
+            margin-top: 4px;
+            margin-bottom: 50px;
+        }
+        .theboy{
+            margin-top:50px;
+        }
+        .img-circle{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+        }
+        .personimg{
+            width: 50px;
+            height: 50px;
+           display: inline-block;
+           position:absolute;
+           top: 10px;
+          
+        }
+        
+        .clearbox{
+            margin-left:60px;
+    
+            display: inline-block;
+        }
+        .forimg{
+            margin-top:20px;
+            word-break:break-all;
+        }
+        /* .forimg img{
+            display: block;
+            max-width: 50px;
+            max-height: 50px;
+        } */
+        .blodname{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .panel{
+            margin:20px 0px;
+        }
+        #profile{
+            width: 600px;
+            margin: 30px auto;
+        }
+        .reply{
+            padding-left:0;
+          
+        }
+        .imgshowlist{
+            height: 300px;
+            border:1px solid #e1e2e3;
+            box-shadow: 3px 3px 3px #888888;
+         
+        }
+        .center-vertical{
+
+            position: relative;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+        } 
+        .forimgmeg{
+            display: none;
+        }
+        .fixed{
+            position: fixed;
+            top: 0px;
+            z-index: 10;
+
+        }
+    </style>
+<body>
+        <div role="tabpanel" class="tab-pane fade in" id="profile">
+                    
+
+                <div class="contorl">
+                        <form class="form-inline fixed">
+                                <div class="form-group">
+                                  <label class="sr-only" for="exampleInputAmountquery">找人</label>
+                                  <div class="input-group">
+                                    <div class="input-group-addon">发现</div>
+                                    <input type="text" class="form-control" id="exampleInputAmountquery" placeholder="找人">
+                                   
+                                  </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="querybutton">搜索</button>
+                              </form>
+                </div>
+                <div id="profilejs">
+
+                  
+                </div>
+                <div id="haofana">
+                        <nav aria-label="Page navigation" class="Pagecount text-center">
+                                <ul class="pagination">
+                                  <li class="hipageone" id="hipageone">
+                                    <a aria-label="Previous">
+                                      <span aria-hidden="true">首页</span>
+                                    </a>
+                                  </li>
+                                  <li class="hipageup" id="hipageup"><a>上一页</a></li>
+                                  <li class="hipagedown" id="hipagedown"><a>下一页</a></li>
+                                  <li class="hipagelast" id="hipagelast">
+                                    <a aria-label="Next">
+                                      <span aria-hidden="true">尾页</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </nav>
+                </div>
+               
+    </div>
+</body>
+<script>
+  
+    var Maxpage=0;
+    var index=1;
+    var Maxcount=0;
+    var pagecut=10;
+   
+    function createshuoshuo(index,count,name){
+        $.ajax({
+        type:"get",
+        url:"/users/saylist",
+        data:{
+            pageindex:index,
+            pagecount:count,
+            name:name
+        },
+        dataType:"json",
+        success:function(json){
+             
+            if(json.result){
+                Maxcount=json.result[0];
+                Maxpage=Math.ceil(Maxcount/pagecut);
+              
+                var profile=document.getElementById("profilejs");
+                    profile.innerHTML="";
+                    json.result[1].forEach((item,index)=>{
+                    loadperson(item.uid,item,index);   
+                          
+                })
+            }else{
+                var profile=document.getElementById("profilejs");
+                profile.innerHTML="暂无数据";
+            }
+        }
+    });
+    }
+    createshuoshuo(index,pagecut,"");
+    serchpage("");  
+    
+    function loadreply(uid){
+        $.ajax({
+            type:"get",
+            url:"/users/loadreply",
+            data:{
+                uid
+            },
+            success:function(json){
+                // console.log(json);
+                json.result.forEach((item,index)=>{
+                    createdd(uid,item);
+                })
+            }
+        })
+    }
+    
+
+    function creatediv(item,index,imgsrc){
+            var src=imgsrc;
+           
+           
+            var profile=document.getElementById("profilejs");
+
+            var div1=document.createElement("div");
+            div1.className="panel panel-default col-md-12 panel-primary";
+            profile.appendChild(div1);
+
+            var div2=document.createElement("div");
+            div2.className="panel-body";
+            div1.appendChild(div2);
+
+            var div4=document.createElement("div");
+            div4.className="personimg";
+            div2.appendChild(div4);
+
+            var img=document.createElement("img");
+            img.className="img-circle thispersonimg";
+            img.setAttribute("src",src);
+            div4.appendChild(img);
+
+            var div3=document.createElement("div");
+            div3.className="content clearbox";
+            div2.appendChild(div3);
+
+            var dl=document.createElement("dl");
+            div3.appendChild(dl);
+
+            var dd1=document.createElement("dd");
+            dd1.className="blodname";
+            dd1.innerHTML=item.name;
+            dl.appendChild(dd1);
+
+            var dd2=document.createElement("dd");
+            dd2.innerHTML=item.date;
+            dl.appendChild(dd2);
+
+            var dd3=document.createElement("dd");
+            dd3.className="forimg";
+            dd3.innerHTML=item.content;
+            dl.appendChild(dd3);
+
+            var divreply=document.createElement("div");
+            divreply.className="replybox";
+            div3.appendChild(divreply);
+
+            var hr=document.createElement("hr");
+            divreply.appendChild(hr);
+            
+            var divreply1=document.createElement("div");
+            divreply1.className="replylist";
+            divreply.appendChild(divreply1);
+
+            var ol=document.createElement("ol");
+            ol.className="reply";
+            ol.id=item.uid;
+            divreply1.appendChild(ol);
+
+            var form=document.createElement("form");
+            form.className="form-inline";
+            divreply.appendChild(form);
+
+            var divform=document.createElement("div");
+            divform.className="form-group";
+            form.appendChild(divform);
+
+            var label=document.createElement("label");
+            label.setAttribute("for",index);
+            divform.appendChild(label);
+
+            var inputform=document.createElement("input");
+            inputform.className="form-control";
+            inputform.id=index;
+            inputform.setAttribute("placeholder","评论");
+            inputform.setAttribute("type","text");
+            divform.appendChild(inputform);
+
+            var buttonform=document.createElement("button");
+            buttonform.className="btn btn-default";
+            buttonform.setAttribute("type","button");
+            buttonform.setAttribute("op",index);
+            buttonform.innerHTML="发布";
+            form.appendChild(buttonform);
+
+    }
+   
+
+    function serchpage(name){
+        var haofana=document.getElementById("haofana");
+        haofana.innerHTML="";
+        var html=`
+        <nav aria-label="Page navigation" class="Pagecount text-center">
+                <ul class="pagination">
+                  <li class="hipageone" id="hipageone">
+                    <a aria-label="Previous">
+                      <span aria-hidden="true">首页</span>
+                    </a>
+                  </li>
+                  <li class="hipageup" id="hipageup"><a>上一页</a></li>
+                  <li class="hipagedown" id="hipagedown"><a>下一页</a></li>
+                  <li class="hipagelast" id="hipagelast">
+                    <a aria-label="Next">
+                      <span aria-hidden="true">尾页</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+        `
+        haofana.innerHTML=html;
+        
+        
+        var hipageone=document.getElementById("hipageone");
+        hipageone.onclick=function(){
+            index=1;
+       $(".hipageup").addClass("disabled"); 
+       $(".hipagedown").removeClass("disabled");
+       createshuoshuo(index,pagecut,name);
+        };
+
+
+        var hipageup=document.getElementById("hipageup");
+        hipageup.onclick=function(){
+            index--;   
+       $(".hipagedown").removeClass("disabled");
+       if(index<=1){
+           index=1;
+           $(".hipageup").addClass("disabled"); 
+       }
+       createshuoshuo(index,pagecut,name);
+        }
+       
+  
+
+        var hipagedown=document.getElementById("hipagedown");
+        hipagedown.onclick=function(){
+            index++;
+       $(".hipageup").removeClass("disabled"); 
+       if(index>=Maxpage){
+           index=Maxpage;
+         
+           $(".hipagedown").addClass("disabled");
+       }
+       createshuoshuo(index,pagecut,name);
+        }
+
+  
+        var hipagelast=document.getElementById("hipagelast");
+        hipagelast.onclick=function(){
+            index=Maxpage;
+       $(".hipagedown").addClass("disabled");
+   
+       $(".hipageup").removeClass("disabled"); 
+       createshuoshuo(index,pagecut,name);
+        }
+  
+    }
+
+    
+    
+    function createreply(messge,uid,name){
+        $.ajax({
+            type:"get",
+            url:"/users/reply",
+            data:{
+                messge,
+                uid,
+                name
+            },
+            success:function(json){
+                // console.log(json);
+                var uol=document.getElementById(uid);
+                uol.innerHTML="";
+                json.result.forEach((item,index)=>{
+                    createdd(uid,item)
+                })
+               
+            }
+        })
+    }
+
+    function createdd(uid,item){
+        // console.log(item)
+        var ol=document.getElementById(uid);
+     
+        var li=document.createElement("li");
+        li.id=item.list.reid;
+        li.innerHTML=item.list.name+":"+item.list.messge;
+        ol.appendChild(li);
+        
+    }
+
+    function loadperson(uid,item,index){
+            $.ajax({
+                type:"get",
+                url:"/users/loadperson",
+                data:{
+                    uid
+                },
+                success:function(json){
+                    // console.log(json.result[0].username);
+                    var imgsrc=json.result[0].personimg;
+                    // console.log(imgsrc);
+                    creatediv(item,index,imgsrc);
+                    $(".hipageone a").css("cursor","pointer");
+                    $(".hipageup").css("cursor","pointer");
+                    $(".hipagedown").css("cursor","pointer");
+                    $(".hipagelast").css("cursor","pointer");
+
+                    var uid=$("#"+index).parent().parent().parent().find("ol").attr("id");
+                    loadreply(uid);
+                        
+                    $("#"+index).parent().parent().find("button").each(function(){                      
+                            var that=this;
+                            $(this).click(function(){
+                                var name=json.result[0].name;
+                                // console.log(name);
+                                var uid=$(this).parent().parent().find("ol").attr("id");
+                                var messge= $(this).parent().find("input").val();
+
+                                createreply(messge,uid,name);
+                               $(this).parent().find("input").val("");
+                            })
+                    })
+                    
+                    $("#"+index).parent().parent().parent().parent().parent().find("img").each(function(){
+                        $(this).on("click",function(){
+                           
+                            findsayperson(uid)
+                        })
+                    });
+
+                     $("#"+index).parent().parent().parent().parent().find("dd").children().attr("style","").css({"word-break":"break-all"});
+                   
+                }
+            }) 
+    }
+
+    function findsayperson(uid){
+        $.ajax({
+            type:"get",
+            url:"/findsayperson",
+            data:{
+                uid
+            },
+            success:function(json){
+                // console.log(json.username);
+                var name=json.username;
+                window.location.href="/index?name="+name;
+            }
+        })
+    };
+
+    $("#querybutton").on("click",function(){
+        index=1;
+        var name=$("#exampleInputAmountquery").val();
+        createshuoshuo(index,pagecut,name);
+        serchpage(name);
+    });
+    
+</script>
+</html>

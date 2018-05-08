@@ -1,0 +1,281 @@
+    
+    
+    $common_color:#e13344;
+    @import "common/mobile";
+    @import "common/antd-mobile.css";
+    @import "../assets/iconfont/iconfont.css";
+
+
+    #exp{
+        background: #fff;
+        width: 100%;
+    }
+    // .mine_partone{
+    //     text-align: center;
+    //     width: 25%;
+    // }
+    // .mine_head{
+    //     width: 100%;
+    // }
+    // .mine_parttwo{
+    //     text-align: center;
+    //     img{
+    //         width: 62px;
+    //         height: 62px;
+    //         display: inline-block;
+    //     }
+    // }
+    // .mine_floatright{
+    //     float: right;
+    // }
+    .active{
+        color:red;
+    }
+    .foot{
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        z-index: 10;
+        height: 80px;
+        border-top:1px solid #999;
+        a{
+            color:#333;
+        }
+    }
+    .footlead{
+        text-align: center;
+    }
+    .loginbackground{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin:0 auto;
+        width: 100%;
+        height: 100%;
+    }
+    .logincontent{
+        margin-top:50%;
+        color:#fff;
+        .loginInput{
+            background: rgba(255,255,255,0);
+            border-bottom: 1px solid #fff;
+            color:#fff!important;
+        }
+    }
+    .logincontent .am-list-item .am-input-control input{
+        color:#fff;
+    }
+    .logincontent .am-list-item .am-input-control ::-webkit-input-placeholder{
+        color:#fff;
+    }
+    
+    .headlead{
+        width: 100%;
+        background: rgb(58,170,252);
+        height: 80px;
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        line-height: 80px;
+    }
+    .headheight{
+        height: 80px;
+    }
+    .headpart{
+        text-align: center;
+    }
+    .friendsserch{
+        width: 100%;
+        height: 60px;
+    }
+    .friendslead{
+        height: 60px;
+        border-bottom: 1px solid #efeff4;
+        line-height: 60px;
+        .am-flexbox-item{
+            text-align: center;
+        } 
+    }
+    .userimg{
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .serchfriendsdemo{
+        .am-flexbox-item{
+            text-align: center;
+        }
+        border-top:1px solid #efeff4;
+    }
+    .newfriendsitem{
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+    .userinfobg{
+       position: absolute;
+       top: 0;
+       width: 100%;
+      
+       z-index: -1;
+       img{
+           width: 100%;
+           height: 100%;
+           opacity: 0.7;
+       }
+    }
+    .userinfoimg{
+       
+        width: 100%;
+        background: rgba(255,255,255,0.1);
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: absolute;
+            margin:0 auto;
+            top: 10%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        span{
+            position: absolute;
+            top: 25%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin:0 auto;
+            color:#333;
+            width: 50px;
+            height: 50px;
+            font-size: 36px;
+            font-weight: bold;
+            display: inline-block;
+        }
+       
+    }
+    .buttonstate{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        opacity: 0.8;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+        .am-list-line{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    .megleft{
+        margin:10px 0px;
+        float: left;
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        
+    }
+    .megleftcontent{
+        margin:10px 0px;
+        background: #fff;
+        border-radius: 20%;
+        float: left;
+        padding: 30px 20px;
+       
+        margin-left: 20px;
+    }
+    .megright{
+        margin:10px 0px;
+        float: right;
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+    .megrightcontent{
+        margin:10px 0px;
+        background: rgb(58,170,252);
+        border-radius: 20%;
+        float: right;
+        padding: 30px 20px;
+       
+        margin-right: 20px;
+    }
+    .chatingroom{
+        background: #efeff4;
+        width: 100%;
+        height: 100%;
+    }
+    .megbuttoncontent{
+        width: 90%;
+        background: #efeff4;
+        position: fixed;
+        bottom: 0;
+        height: 80px;
+        padding: 0 5%;
+    }
+    .megbutton{
+        overflow: hidden;
+        input{
+           width: 80%;
+            float: left;
+            height: 80px;
+            outline: none;
+            border: none;
+            border-radius: 4%;
+        }
+        a{
+            width: 20%;
+            height: 100%;
+            float: left;
+        }
+    }
+    .chatheight{
+        height: 80px;
+    }
+    .system{
+        border-bottom: 1px solid #999;
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+           
+        }
+    }
+    .megnums{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: red;
+        float: right;
+        display: none;
+        color:#fff;
+        font-size: 24px;
+    }
+    .friendsItem{
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+    .activeleader{
+        text-align: center;
+    }
+    .megforItems{
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }

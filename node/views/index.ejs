@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人主页</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="/bootstrap/js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        *{
+          
+            list-style: none;
+        }
+        .demoimg{
+            width: 210px;
+            height: 210px;
+        }
+        .paddingtop{
+            height: 30px;
+        }
+        .megbox tr{
+          
+            height: 41px;
+        }
+        .megbox{
+            margin-top: 4px;
+            margin-bottom: 50px;
+        }
+        .theboy{
+            margin-top:50px;
+        }
+        .img-circle{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+        }
+        .personimg{
+            width: 50px;
+            height: 50px;
+           display: inline-block;
+           position:absolute;
+           top: 10px;
+          
+        }
+        
+        .clearbox{
+            margin-left:60px;
+    
+            display: inline-block;
+        }
+        .forimg{
+            margin-top:20px;
+        }
+        /* .forimg img{
+            display: block;
+            max-width: 50px;
+            max-height: 50px;
+        } */
+        .blodname{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .panel{
+            margin:20px 0px;
+        }
+        #profile{
+            width: 600px;
+            margin:0 auto;
+        }
+        .reply{
+            padding-left:0;
+        }
+        .imgshowlist{
+            height: 300px;
+            border:1px solid #e1e2e3;
+            box-shadow: 3px 3px 3px #888888;
+        }
+        .center-vertical{
+
+            position: relative;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+        } 
+        .forimgmeg{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+        <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">详细资料</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">我的说说</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">我的相册</a></li>
+        </ul>
+        <div class="paddingtop"></div>
+        <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    <div class="col-md-3">
+                            <img src="<%-result.personimg%>" alt="" class="img-thumbnail demoimg">
+                            
+                    </div>
+                    <div class="col-md-9 megbox">
+                        <table class="table table-hover" id="thegirl">
+                                <tr class="info">
+                                    <td class="col-md-3 text-center comehere" uid=<%-username%>>
+                                        用户名
+                                    </td>
+                                    <td>
+                                        <%-username%>  
+                                    </td>
+                                </tr>
+                                
+                                    <tr class="info">
+                                        <td class="col-md-3 text-center forpersonname" op=<%-result.name%> >
+                                            昵称
+                                        </td>
+                                        <td>
+                                            <%-result.name%>
+                                        </td>
+                                </tr>
+                                <tr class="info">
+                                        <td class="col-md-3 text-center">
+                                            性别
+                                        </td>
+                                        <td>
+                                            <%-result.sex%>
+                                        </td>
+                                </tr>
+                                <tr class="info">
+                                        <td class="col-md-3 text-center">
+                                            年龄
+                                        </td>
+                                        <td>
+                                            <%-result.age%>
+                                            </td>
+                                </tr>
+                                <tr class="info">
+                                        <td class="col-md-3 text-center">
+                                            地区
+                                        </td>
+                                        <td>
+                                            <%-result.place%>
+                                            </td>
+                                </tr>
+                                <tr class="info">
+                                        <td class="col-md-3 text-center">
+                                            开通空间时间
+                                        </td>
+                                        <td>
+                                            <%-result.date%>
+                                        </td>
+                                </tr>
+                              
+                                
+                        </table>
+                    </div>
+
+                    <div class="theboy">
+                            <div class="col-md-6">
+                                    <table class="table tab-content table-hover">
+                                            <tr class="active">
+                                                <td>自我介绍</td>
+                                            </tr>
+                                            <tr class="active">
+                                                    <td>
+                                                        <%-result.person%>
+                                                    </td> 
+                                            </tr>
+                                        </table>
+                            </div>
+                           <div class="col-md-6">
+                                <table class="table tab-content table-hover">
+                                        <tr>
+                                            <td class="active">兴趣爱好</td>
+                                        </tr>
+                                        <!-- <tr class="active">
+                                                <td class="text-center"><%-result.like1%></td>
+                                                <td class="text-center"><%-result.like2%></td>
+                                                <td class="text-center"><%-result.like3%></td>
+                                        </tr> -->
+                                        <tr class="active">
+                                                <td class="text-center"><%-result.like1%></td>
+                                        </tr>
+                                        <tr class="active">
+                                                <td class="text-center"><%-result.like2%></td>
+                                        </tr>
+                                        <tr class="active">
+                                                <td class="text-center"><%-result.like3%></td>
+                                        </tr>
+                                    </table>
+                           </div>
+                        
+                                
+                        </div>
+                       
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="profile">
+                    
+
+                           
+                            <div id="profilejs">
+
+                              
+                            </div>
+           
+                           <nav aria-label="Page navigation" class="Pagecount text-center">
+                            <ul class="pagination">
+                              <li class="hipageone">
+                                <a aria-label="Previous">
+                                  <span aria-hidden="true">首页</span>
+                                </a>
+                              </li>
+                              <li class="hipageup"><a>上一页</a></li>
+                              <li class="hipagedown"><a>下一页</a></li>
+                              <li class="hipagelast">
+                                <a aria-label="Next">
+                                  <span aria-hidden="true">尾页</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="messages">
+                    <ul id="comeimg">
+                        <!-- <li class="col-md-3 imgshowlist">
+                            <img src="/images/touxiang/y.jpg" alt="" class="img-responsive center-vertical center-block">
+                        </li> -->
+                    </ul>    
+                    <ul>
+                        <% if(username==nowname){ %>
+                        <li class="col-md-3 imgshowlist">
+                                <form action="/insertimg" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                            <input type="text" name="username" value="<%-username%>" class="forimgmeg">
+                                            <p class="form-signin-heading">请上传图片</p>
+                                            <input id="fulAvatar" name="fulAvatar" type="file" class="form-control" />
+                                    </div> 
+                            <button id="sendimg" type="submit">上传</button>
+    
+                            </form>
+                        </li>
+                        <%}%>
+                        
+                       
+                        
+                    </ul>
+                
+                </div>
+        </div>
+        
+       
+</body>
+<script>
+    var username=$(".comehere").attr("uid");
+    var Maxpage=0;
+    var index=1;
+    var Maxcount=0;
+    var pagecut=10;
+   
+    function createshuoshuo(index,count,username){
+        $.ajax({
+        type:"get",
+        url:"/saylist",
+        data:{
+            pageindex:index,
+            pagecount:count,
+            username:username
+        },
+        dataType:"json",
+        success:function(json){
+               
+            if(json.result){
+                Maxcount=json.result[0];
+                Maxpage=Math.ceil(Maxcount/pagecut);
+              
+                var profile=document.getElementById("profilejs");
+                    profile.innerHTML="";
+                json.result[1].forEach((item,index)=>{
+                   
+                    creatediv(item,index)
+                    $(".hipageone a").css("cursor","pointer");
+                    $(".hipageup").css("cursor","pointer");
+                    $(".hipagedown").css("cursor","pointer");
+                    $(".hipagelast").css("cursor","pointer");
+
+                    var uid=$("#"+index).parent().parent().parent().find("ol").attr("id");
+                    loadreply(uid);
+
+                    $("#"+index).parent().parent().find("button").each(function(){                      
+                            var that=this;
+                            $(this).click(function(){
+                                var name=$(".forpersonname").attr("op");
+                                var uid=$(this).parent().parent().find("ol").attr("id");
+                                var messge= $(this).parent().find("input").val();
+
+                                createreply(messge,uid,name,that);
+                               $(this).parent().find("input").val("");
+                            })
+                    })
+                       
+                    
+                })
+            }else{
+                var profile=document.getElementById("profilejs");
+                profile.innerHTML="暂无数据";
+            }
+        }
+    });
+    }
+    createshuoshuo(index,pagecut,username);
+    
+    function loadreply(uid){
+        $.ajax({
+            type:"get",
+            url:"/loadreply",
+            data:{
+                uid
+            },
+            success:function(json){
+                // console.log(json);
+                json.result.forEach((item,index)=>{
+                    createdd(uid,item);
+                })
+            }
+        })
+    }
+    
+
+    function creatediv(item,index){
+            var src=$(".demoimg").attr("src");
+           
+           
+            var profile=document.getElementById("profilejs");
+
+            var div1=document.createElement("div");
+            div1.className="panel panel-default col-md-12 panel-primary";
+            profile.appendChild(div1);
+
+            var div2=document.createElement("div");
+            div2.className="panel-body";
+            div1.appendChild(div2);
+
+            var div4=document.createElement("div");
+            div4.className="personimg";
+            div2.appendChild(div4);
+
+            var img=document.createElement("img");
+            img.className="img-circle";
+            img.setAttribute("src",src);
+            div4.appendChild(img);
+
+            var div3=document.createElement("div");
+            div3.className="content clearbox";
+            div2.appendChild(div3);
+
+            var dl=document.createElement("dl");
+            div3.appendChild(dl);
+
+            var dd1=document.createElement("dd");
+            dd1.className="blodname";
+            dd1.innerHTML=item.name;
+            dl.appendChild(dd1);
+
+            var dd2=document.createElement("dd");
+            dd2.innerHTML=item.date;
+            dl.appendChild(dd2);
+
+            var dd3=document.createElement("dd");
+            dd3.className="forimg";
+            dd3.innerHTML=item.content;
+            dl.appendChild(dd3);
+
+            var divreply=document.createElement("div");
+            divreply.className="replybox";
+            div3.appendChild(divreply);
+
+            var hr=document.createElement("hr");
+            divreply.appendChild(hr);
+            
+            var divreply1=document.createElement("div");
+            divreply1.className="replylist";
+            divreply.appendChild(divreply1);
+
+            var ol=document.createElement("ol");
+            ol.className="reply";
+            ol.id=item.uid;
+            divreply1.appendChild(ol);
+
+            var form=document.createElement("form");
+            form.className="form-inline";
+            divreply.appendChild(form);
+
+            var divform=document.createElement("div");
+            divform.className="form-group";
+            form.appendChild(divform);
+
+            var label=document.createElement("label");
+            label.setAttribute("for",index);
+            divform.appendChild(label);
+
+            var inputform=document.createElement("input");
+            inputform.className="form-control";
+            inputform.id=index;
+            inputform.setAttribute("placeholder","评论");
+            inputform.setAttribute("type","text");
+            divform.appendChild(inputform);
+
+            var buttonform=document.createElement("button");
+            buttonform.className="btn btn-default";
+            buttonform.setAttribute("type","button");
+            buttonform.setAttribute("op",index);
+            buttonform.innerHTML="发布";
+            form.appendChild(buttonform);
+
+    }
+   
+
+
+
+    $(".hipageone").on("click",function(){
+       
+        index=1;
+        $(".hipageup").addClass("disabled"); 
+        $(".hipagedown").removeClass("disabled");
+        createshuoshuo(index,pagecut,username);
+    });
+   
+
+   $(".hipageup").on("click",function(){
+   
+        index--;   
+        $(".hipagedown").removeClass("disabled");
+        if(index<=1){
+            index=1;
+            $(".hipageup").addClass("disabled"); 
+        }
+        createshuoshuo(index,pagecut,username);
+    });
+
+
+    $(".hipagedown").on("click",function(){
+       
+        index++;
+        $(".hipageup").removeClass("disabled"); 
+        if(index>=Maxpage){
+            index=Maxpage;
+            $(".hipagedown").addClass("disabled");
+        }
+        createshuoshuo(index,pagecut,username);
+       
+    });
+
+    $(".hipagelast").on("click",function(){
+       
+        index=Maxpage;
+        $(".hipagedown").addClass("disabled");
+        $(".hipageup").removeClass("disabled"); 
+        createshuoshuo(index,pagecut,username);
+    });
+    
+    function createreply(messge,uid,username,that){
+        $.ajax({
+            type:"get",
+            url:"/reply",
+            data:{
+                messge,
+                uid,
+                username
+            },
+            success:function(json){
+                // console.log(json);
+                var uol=document.getElementById(uid);
+                uol.innerHTML="";
+                json.result.forEach((item,index)=>{
+                    createdd(uid,item,that)
+                })
+               
+            }
+        })
+    }
+
+    function createdd(uid,item,that){
+        // console.log(item)
+        var ol=document.getElementById(uid);
+     
+        var li=document.createElement("li");
+        li.innerHTML=item.list.name+":"+item.list.messge;
+        ol.appendChild(li);
+        
+    }
+   
+    createimglist();
+    function createimglist(){
+        $.ajax({
+            type:"get",
+            url:"/imglist",
+            data:{
+                username
+            },
+            success:function(json){
+               
+                if(json.result){
+                    var ul=document.getElementById("comeimg");
+                    ul.innerHTML="";
+                    json.result.forEach((item,index)=>{
+                        createimg(item)
+                    })
+                }else{
+                    var ul=document.getElementById("comeimg");
+                    ul.innerHTML="";
+                    var h2=document.createElement("h2");
+                    h2.innerHTML="暂无图片";
+                    ul.appendChild(h2);
+                }
+            }
+        })
+    }
+    function createimg(item){
+        var ul=document.getElementById("comeimg");
+
+        var li=document.createElement("li");
+        li.className="col-md-3 imgshowlist";
+        ul.appendChild(li);
+        
+        var img=document.createElement("img");
+        img.className="img-responsive center-vertical center-block";
+        img.setAttribute("src",item.imgsrc);
+        li.appendChild(img);
+    }
+</script>
+</html>
+

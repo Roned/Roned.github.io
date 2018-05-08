@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="/bootstrap/js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .forsaylist img{
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <% if(test){ %>
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>
+                昵称
+            </td>
+            <td>
+                时间
+            </td>
+            <td>
+                内容
+            </td>
+            <td>
+                操作
+            </td>
+        </tr>
+        <%result.forEach((item,index)=>{ %>
+            <tr class="forsaylist">
+            <td>
+                <%-item.username%>
+            </td>
+            <td>
+                <%-item.imgdate%>
+            </td>
+            <td>
+                <img src="<%-item.imgsrc%>" alt="">
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary delete" data-toggle="modal" data-target="#myModal" id="<%-item.imgid%>">
+                    删除
+                </button>
+                
+            </td>
+        </tr>
+        <% })%>
+        
+      </table>
+      <nav aria-label="Page navigation" class="Pagecount text-center">
+            <ul class="pagination">
+              <li class="hipageone" onclick="window.location.href='/controlimg?pageindex=1'">
+                <a aria-label="Previous">
+                  <span aria-hidden="true">首页</span>
+                </a>
+              </li>
+              <li class="hipageup" onclick="window.location.href='/controlimg?pageindex=<%-pageindex*1-1%>'"><a>上一页</a></li>
+              <li class="hipagedown" onclick="window.location.href='/controlimg?pageindex=<%-pageindex*1+1%>'"><a>下一页</a></li>
+              <li class="hipagelast" onclick="window.location.href='/controlimg?pageindex=<%-pageMax%>'">
+                <a aria-label="Next">
+                  <span aria-hidden="true">尾页</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+      <!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">提示</h4>
+        </div>
+        <div class="modal-body">
+         你确定要删除吗
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary redelete">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } else{%>
+
+        <h3>去个人中心/我的相册添加图片</h3>
+ <% } %>
+</body>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+    })
+
+    $(".delete").each(function(){
+        var imgid=$(this).attr("id");
+        // console.log(imgid);
+        $(this).click(function(){
+            $(".redelete").click(function(){
+                $.ajax({
+                    type:"get",
+                    url:"/deleteimg",
+                    data:{
+                        imgid
+                    },
+                    success:function(json){
+                        if(json){
+                            window.location.href="/controlimg";
+                        }
+                    }
+                });
+            })
+        })
+    });
+
+    $(".pagination").find("li").css("cursor","pointer");
+</script>
+</html>

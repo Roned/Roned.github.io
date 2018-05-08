@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+   
+    <link rel="stylesheet" href="/stylesheets/css/pintuer.css">
+    <link rel="stylesheet" href="/stylesheets/css/admin.css">
+    <script src="/javascripts/js/jquery.js"></script>   
+</head>
+<body style="background-color:#f2f9fd;">
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img src="<%-result.personimg%>" class="radius-circle rotate-hover" height="50" alt="" />欢迎您<%- username%></h1>
+  </div>
+  <div class="head-l"><a class="button button-little bg-green" target="_blank" id="backtoindex"><span class="icon-home"></span> 返回</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="/users/logout"><span class="icon-power-off"></span> 退出登录</a> </div>
+</div>
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+  <h2><span class="icon-user"></span>基本设置</h2>
+  <ul style="display:block">
+    <li op="/index"><a><span class="icon-caret-right"></span>个人主页</a></li>
+    <li op="/users/changemeg"><a><span class="icon-caret-right"></span>修改资料</a></li>
+    <li op="/controlsay"><a target="right"><span class="icon-caret-right"></span>说说管理</a></li>
+    <li op="/controlimg"><a target="right"><span class="icon-caret-right"></span>相册管理</a></li>
+  </ul>   
+  <h2><span class="icon-pencil-square-o"></span>发现新鲜事</h2>
+  <ul>
+    <li op="/comments/createsay?name=<%-result.name%>"><a target="right"><span class="icon-caret-right"></span>发说说</a></li>
+   
+    <li op="/users/friends"><a target="right"><span class="icon-caret-right"></span>朋友圈</a></li>        
+  </ul>  
+</div>
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);	
+	  $(this).toggleClass("on"); 
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+<ul class="bread">
+  <li><a class="icon-home"> 首页</a></li>
+  <li><a id="a_leader_txt">个人主页</a></li>
+</ul>
+<div class="admin">
+  <iframe id="nowforejs" scrolling="auto" rameborder="0" src="/index" name="right" width="100%" height="100%"></iframe>
+</div>
+<script>
+    $(".leftnav li").each(function(){
+      $(this).css("cursor","pointer");
+    })
+    $(".leftnav li").each(function(){
+      var url=$(this).attr("op");
+      $(this).on("click",function(){
+      $("#nowforejs").attr("src",url);
+      }) 
+    })
+    $("#backtoindex").on("click",function(){
+      $("#nowforejs").attr("src","/index");
+    })
+</script>
+</body>
+</html>

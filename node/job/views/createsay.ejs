@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="/bootstrap/js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/xheditor/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/xheditor/xheditor-1.2.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/xheditor/xheditor_lang/zh-cn.js"></script>
+</head>
+<body>
+
+
+        <div class="panel panel-default panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">写下今天的心情....</h3>
+                </div>
+                <div class="panel-body sucess">
+                      
+                </div>
+                <div class="panel panel-default panel-info">
+                        <div class="panel-heading">
+                                <h3 class="panel-title">HI,<%-name%></h3>
+                        </div>
+                     
+                </div>
+               
+                <div class="panel-body">
+                        <form action="/comments/submit?name=<%-name%>" method="POST" class="text-center">
+                            <textarea name="content"  id="mycontent" cols="120" rows="20"></textarea>
+                            <br>
+                           <button type="submit"  class="btn btn-info">提交</button>
+                       </form>
+                </div>
+              </div>
+
+       
+
+
+       <script type="text/javascript">
+        // $("#content").xheditor();  实例化
+  
+        $(pageInit);
+  
+        //  comment.ejs  /comment/index
+        function pageInit(){
+            $.extend(XHEDITOR.settings,{shortcuts:{"ctrl+enter":submitForm}});
+            // $("#ele").xheditor();
+            $("#mycontent").xheditor({   //初始化 富文件编辑框
+                html5Upload:false,
+                upMultiple:"1",
+  
+                upLinkRrl:"upload.html",
+                upLinkExt:"zip,rar,txt",
+  
+                upImgUrl:"/comments/uploadImg",
+                upImgExt:"jpg,jpeg,gif,png",
+  
+                upFlashUrl:"upload.php",
+                upFlashExt:"swf",
+  
+                upMediaUrl:"upload.php",
+                upMediaExt:"wmv,avi,wma,mp3,mid"
+  
+            });
+        };
+  
+        function insertUpload(arrMsg){
+            // console.log(arrMsg);
+            var i,msg;
+            for(var i=0;i<arrMsg.length;i++){
+                msg=arrMsg[i];
+                // console.log(msg);
+                $("#uploadList").append('<option value="'+msg.id+'">'+msg.localname+'</option>')
+            }
+        };
+  
+        function submitForm(){
+            $("#frmDemo").submit();
+        }
+    </script>
+</body>
+</html>
