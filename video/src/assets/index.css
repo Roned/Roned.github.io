@@ -1,0 +1,35 @@
+.container {
+  background-color: #efefef;
+  min-height: 100%;
+}
+.vjs-poster{
+  background-size: cover;
+}
+/* .vjs-tech {
+  pointer-events: auto;
+} */
+.vjs-paused .vjs-big-play-button,
+.vjs-paused.vjs-has-started .vjs-big-play-button {
+    display: block;
+}
+.nodata-img img{
+  position: unset;
+  left: unset;
+  top: unset;
+  width: 75px;
+}
+.video-js.vjs-playing .vjs-tech {
+  pointer-events: auto;
+}
+.dplayer-controller-mask{
+  height: 41px!important;
+}
+/* .video-js .vjs-big-play-button{
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    border-radius: 1em;
+    transform: translate(-50%,-50%);
+    margin-top:0!important;
+    margin-left:0!important;
+} */
